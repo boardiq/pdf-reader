@@ -45,8 +45,11 @@ class PDF::Reader
       end
 
       # Restore the state to the previous value on the stack.
-      #
-      def restore_graphics_state
+      # 
+      # Seems to be a significant issue with this on newer rubies
+      # and being passed 11 args instead of zero.
+      # TODO: Explore root cause
+      def restore_graphics_state(*args)
         @stack.pop
       end
 
